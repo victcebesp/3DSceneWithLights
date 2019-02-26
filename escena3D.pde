@@ -10,6 +10,7 @@ void setup() {
   tank = loadShape("./data/tank1.obj");
   tankTexture = loadImage("./data/tankTexture.png");
   plane.setTexture(tankTexture);
+  tank.setTexture(tankTexture);
   tower = loadShape("./data/tower.obj");
 }
 
