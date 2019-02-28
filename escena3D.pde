@@ -1,16 +1,16 @@
 float cameraRotationAngle;
-PShape plane, tank, tower;
-PImage tankTexture;
+PShape plane, tower;
+PImage bunkerTexture, groundTexture, planeTexture;
 
 void setup() {
   size(800, 800, P3D);
   noStroke();
   cameraRotationAngle = 0;
   plane = loadShape("./data/plane.obj");
-  tank = loadShape("./data/tank1.obj");
-  tankTexture = loadImage("./data/tankTexture.png");
-  plane.setTexture(tankTexture);
-  tank.setTexture(tankTexture);
+  bunkerTexture = loadImage("./data/tankTexture.png");
+  groundTexture = loadImage("./data/ground.jpg");
+  planeTexture = loadImage("./data/planeTexture.jpg");
+  plane.setTexture(planeTexture);
   tower = loadShape("./data/tower.obj");
 }
 
@@ -20,14 +20,29 @@ void draw() {
   updateCameraCoordinates();
   
   lights();
-  lightSpecular(100, 100, 100);
   directionalLight(255, 255, 255, width/2, height/2, (height/2.0) / tan(PI*30.0 / 180.0));
   
-  fill(150, 150, 150);
-  box(1000, 20, 1000);
+  pushStyle();
+  pushMatrix();
+  translate(200, -200, 0);
+  box(600, 100, 1);
+  fill(10, 10, 10);
+  text("To rotate the camera right/left press -> d/a", -230,-15, 2);
+  text("To move the camera target, use the mouse pointer", -230, 15, 2);
+  rotateY(PI);
+  text("To rotate the camera right/left press -> d/a", -230,-15, 2);
+  text("To move the camera target, use the mouse pointer", -230, 15, 2);
+  popMatrix();
+  popStyle();
+  
+  pushStyle();
+  specular(65, 97, 2); 
+  shininess(1);
+  texturedCube(groundTexture, 500, 10, 500);
+  popStyle();
   
   showPlane();
-  showTanks();
+  showBunker();
   showBuilding();
   
   float x = cos(radians(cameraRotationAngle)) * 1000;
@@ -46,30 +61,27 @@ void updateCameraCoordinates() {
   }
 }
 
-void showTanks() {
+void showBunker() {
   pushMatrix();
   rotateY(35);
-  translate(10, -10, 0);
-  scale(20);
-  rotateX(PI);
+  translate(300, -110, 0);
+  textSize(20);
   specular(65, 97, 2); 
-  shininess(10);
-  shape(tank);
-  translate(5, 0, 10);
-  shape(tank);
-  translate(10, 0, -20);
-  shape(tank);
+  shininess(100);
+  texturedCube(bunkerTexture, 100, 100, 100);
   popMatrix();
 }
 
 void showBuilding() {
   pushMatrix();
+  pushStyle();
   rotateX(PI);
   translate(0, 10, 300);
   scale(0.03);
   specular(255, 255, 255); 
-  shininess(20);
+  shininess(100);
   shape(tower);
+  popStyle();
   popMatrix();
 }
 
@@ -83,4 +95,47 @@ void showPlane() {
   shininess(100);
   shape(plane);
   popMatrix();
+}
+
+void texturedCube(PImage tex, int cubeWidth, int cubeHeight, int deep) {
+  beginShape(QUADS);
+  texture(tex);
+
+  // +Z "front" face
+  vertex(-cubeWidth, -cubeHeight, deep,0, 0);
+  vertex( cubeWidth,-cubeHeight, deep,cubeHeight,0);
+  vertex( cubeWidth, cubeHeight, deep,cubeHeight,cubeHeight);
+  vertex(-cubeWidth,  cubeHeight, deep ,0, cubeHeight);
+
+  // -Z "back" face
+  vertex( cubeWidth,-cubeHeight, -deep, 0, 0);
+  vertex(-cubeWidth, -cubeHeight, -deep, cubeHeight,0);
+  vertex(-cubeWidth,  cubeHeight,-deep, cubeHeight,cubeHeight);
+  vertex( cubeWidth, cubeHeight,-deep, 0, cubeHeight);
+
+  // +Y "bottom" face
+  vertex(-cubeWidth,  cubeHeight, deep,0, 0);
+  vertex( cubeWidth, cubeHeight, deep,cubeWidth,0);
+  vertex( cubeWidth, cubeHeight,-deep, cubeWidth,cubeWidth);
+  vertex(-cubeWidth,  cubeHeight,-deep, 0, cubeWidth);
+
+  // -Y "top" face
+  vertex(-cubeWidth, -cubeHeight, -deep, 0, 0);
+  vertex( cubeWidth,-cubeHeight, -deep, cubeWidth,0);
+  vertex( cubeWidth,-cubeHeight,  deep,cubeWidth,cubeWidth);
+  vertex(-cubeWidth, -cubeHeight, deep, 0, cubeWidth);
+
+  // +X "right" face
+  vertex( cubeWidth,-cubeHeight,  deep,0, 0);
+  vertex( cubeWidth,-cubeHeight, -deep, cubeWidth,0);
+  vertex( cubeWidth, cubeHeight,-deep, cubeWidth,cubeWidth);
+  vertex( cubeWidth, cubeHeight, deep,0, cubeWidth);
+
+  // -X "left" face
+  vertex(-cubeWidth, -cubeHeight, -deep, 0, 0);
+  vertex(-cubeWidth, -cubeHeight,  deep,cubeWidth,0);
+  vertex(-cubeWidth,  cubeHeight, deep,cubeWidth,cubeWidth);
+  vertex(-cubeWidth,  cubeHeight,-deep, 0, cubeWidth);
+
+  endShape();
 }
