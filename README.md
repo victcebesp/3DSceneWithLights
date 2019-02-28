@@ -1,4 +1,4 @@
-# Escena tridimensiona
+# Escena tridimensional
 
 Víctor Ceballos Espinosa
 
