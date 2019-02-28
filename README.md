@@ -35,5 +35,7 @@ Para mover la cámara se usan los siguientes controles:
 
 ## Referencias
 [Para descargar los modelos 3D](https://www.turbosquid.com)
+
 [Enunciado de la práctica](https://cv-aep.ulpgc.es/cv/ulpgctp19/pluginfile.php/182523/mod_resource/content/13/CIU_Pr_cticas.pdf)
+
 [Repositorio de GitHub](https://github.com/victcebesp/3DSceneWithLights)
