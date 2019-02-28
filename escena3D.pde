@@ -46,7 +46,12 @@ void draw() {
   float x = cos(radians(cameraRotationAngle)) * 1000;
   float y = -height/2;
   float z = sin(radians(cameraRotationAngle)) * 1000;
-  camera(x, y, z, mouseX - width/2, mouseY - height/2, 0, 0, 1, 0);
+  if(z >= 0) {
+    camera(x, y, z, mouseX - width/2, mouseY - height/2, 0, 0, 1, 0);
+  } else {
+    camera(x, y, z, -mouseX + width/2, mouseY - height/2, 0, 0, 1, 0);
+  }
+  
 }
 
 void updateCameraCoordinates() {
