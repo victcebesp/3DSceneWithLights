@@ -1,4 +1,5 @@
-# Escena tridimensional
+# Escena tridimensional
+
 Víctor Ceballos Espinosa
 
 ## Introducción
@@ -13,7 +14,7 @@ Por otro lado, tuve que aplicar texturas a objetos de tipo PShape cargados media
 
 Por último nos encontramos los casos de las dos cajas: el suelo y el búnker. Para empezar es importante nombrar que no encontré una manera de aplicarle a un objeto creado con el método box una textura. Para solventar esto, cree una función que haciendo uso de los métodos beginShape y endShape, construyen una caja con las dimensiones que se pasen por los parámetros a parte de aplicar la textura que de igual manera sea pasada por parámetro. Para conseguir esto último, usé el método texture.
 
-## Luces y materiales
+## Luces y materiales
 En cuanto a las luces, he decidido aplicar dos tipos. Por un lado se aplica una luz general usando el método lights. Por otro lado, se usa una luz direccional que pretende imitar el Sol. Esta luz direccional está situada de tal forma que el avión quede en la sombra que proyectaría el edificio.
 
 Con esta combinación de luces, se conseguir apreciar la diferencia de color alrededor de los objetos. En la sección de la cámara, se describe cómo mover la misma para poder observar estos efectos de una mejor forma.
@@ -34,5 +35,7 @@ Para mover la cámara se usan los siguientes controles:
 
 ## Referencias
 [Para descargar los modelos 3D](https://www.turbosquid.com)
+
 [Enunciado de la práctica](https://cv-aep.ulpgc.es/cv/ulpgctp19/pluginfile.php/182523/mod_resource/content/13/CIU_Pr_cticas.pdf)
+
 [Repositorio de GitHub](https://github.com/victcebesp/3DSceneWithLights)
