@@ -6,11 +6,14 @@ void setup() {
   size(800, 800, P3D);
   noStroke();
   cameraRotationAngle = 0;
-  plane = loadShape("./data/plane.obj");
   bunkerTexture = loadImage("./data/tankTexture.png");
   groundTexture = loadImage("./data/ground.jpg");
+  
+  plane = loadShape("./data/plane.obj");
   planeTexture = loadImage("./data/planeTexture.jpg");
   plane.setTexture(planeTexture);
+  
+  
   tower = loadShape("./data/tower.obj");
 }
 
@@ -35,11 +38,9 @@ void draw() {
   popMatrix();
   popStyle();
   
-  pushStyle();
   specular(65, 97, 2); 
   shininess(1);
   texturedCube(groundTexture, 500, 10, 500);
-  popStyle();
   
   showPlane();
   showBunker();
@@ -74,14 +75,12 @@ void showBunker() {
 
 void showBuilding() {
   pushMatrix();
-  pushStyle();
   rotateX(PI);
   translate(0, 10, 300);
   scale(0.03);
   specular(255, 255, 255); 
   shininess(100);
   shape(tower);
-  popStyle();
   popMatrix();
 }
 
