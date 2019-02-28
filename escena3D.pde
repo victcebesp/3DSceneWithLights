@@ -8,12 +8,9 @@ void setup() {
   cameraRotationAngle = 0;
   bunkerTexture = loadImage("./data/tankTexture.png");
   groundTexture = loadImage("./data/ground.jpg");
-  
   plane = loadShape("./data/plane.obj");
   planeTexture = loadImage("./data/planeTexture.jpg");
   plane.setTexture(planeTexture);
-  
-  
   tower = loadShape("./data/tower.obj");
 }
 
